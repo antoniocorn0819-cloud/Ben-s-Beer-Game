@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://fbv21ctmvicu"]
+
+[ext_resource type="Script" uid="uid://bvwwlb0r83mo5" path="res://Scripts/waiter.gd" id="1_yolb7"]
+[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="2_4lx1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bufwb"]
+radius = 21.023796
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yolb7"]
+size = Vector2(42, 38)
+
+[node name="Waiter" type="CharacterBody2D" unique_id=60788760 node_paths=PackedStringArray("agent")]
+collision_layer = 0
+script = ExtResource("1_yolb7")
+agent = NodePath("NavigationAgent2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1194291061]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.34375, 0.453125)
+texture = ExtResource("2_4lx1f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=165608797]
+shape = SubResource("CircleShape2D_bufwb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=768353494]
+debug_enabled = true
+
+[node name="Pathfinding Timer" type="Timer" parent="." unique_id=779024112]
+wait_time = 0.1
+autostart = true
+
+[node name="Pushbox Reciever" type="Area2D" parent="." unique_id=38544833]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pushbox Reciever" unique_id=1543826840]
+shape = SubResource("RectangleShape2D_yolb7")
+
+[connection signal="timeout" from="Pathfinding Timer" to="." method="_on_pathfinding_timer_timeout"]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bx5j84k6gao4j"]
+
+[ext_resource type="Script" uid="uid://14ht2p7cky07" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="2_6t5aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
+radius = 27.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(16, 16)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cvnsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(14, 14)
+
+[node name="Player" type="CharacterBody2D" unique_id=131372232 node_paths=PackedStringArray("pivot", "drinkbox", "pushbox")]
+collision_layer = 0
+script = ExtResource("1_cvnsp")
+pivot = NodePath("Pivot")
+drinkbox = NodePath("Pivot/Drinkbox Initiator")
+pushbox = NodePath("Pivot/Pushbox Initiator")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=205258816]
+scale = Vector2(0.513, 0.5)
+texture = ExtResource("2_6t5aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1515172760]
+shape = SubResource("CircleShape2D_vgqql")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=337685425]
+
+[node name="Drinkbox Initiator" type="Area2D" parent="Pivot" unique_id=1897210577]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Drinkbox Initiator" unique_id=98516776]
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="Debug Indicator" type="Sprite2D" parent="Pivot" unique_id=1280714313]
+scale = Vector2(4, 4)
+texture = SubResource("PlaceholderTexture2D_cvnsp")
+
+[node name="Pushbox Initiator" type="Area2D" parent="Pivot" unique_id=2102602484]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Pushbox Initiator" unique_id=580348821]
+shape = SubResource("RectangleShape2D_6t5aa")

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://fivqbhf1g0tt"]
+
+[ext_resource type="PackedScene" uid="uid://bx5j84k6gao4j" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://1hribhik7maf" path="res://Scripts/game.gd" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://njua7bjnp8n3" path="res://Scenes/numbers.tscn" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://cr4oxamyam4s7" path="res://Scenes/table.tscn" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://fbv21ctmvicu" path="res://Scenes/waiter.tscn" id="5_wowpa"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wowpa"]
+vertices = PackedVector2Array(-486.5, -253.17188, 488, -267.84375, 453.15625, -235.02344, -420.6172, -233, -434.54688, -231.28906, 488, 251.85938, 445.84375, 217.11719, -466.40625, 239.11719, -422.9297, 206.88281, -437.1875, -216.82031, -487.64063, -251.92969, -425.95313, -210.92188)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4), PackedInt32Array(2, 1, 5, 6), PackedInt32Array(6, 5, 7, 8), PackedInt32Array(9, 8, 7, 10, 0), PackedInt32Array(0, 4, 9), PackedInt32Array(8, 9, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-498, -263, 498, -278, 498, 262, -476, 249, -498, -260, -411, -215, -413, 197, 436, 207, 443, -225, -420, -223, -469, -217)])
+
+[node name="Game" type="Node2D" unique_id=827461382 node_paths=PackedStringArray("plyr", "numb", "tables")]
+script = ExtResource("1_qxrlw")
+plyr = NodePath("CharacterBody2D")
+numb = NodePath("Numbers")
+tables = [NodePath("table"), NodePath("table2")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1913062370]
+
+[node name="CharacterBody2D" parent="." unique_id=131372232 instance=ExtResource("1_ebmjs")]
+
+[node name="Numbers" parent="." unique_id=187204124 instance=ExtResource("3_wrm1d")]
+offset_left = -551.0
+offset_top = -300.0
+offset_right = -551.0
+offset_bottom = -300.0
+
+[node name="table" parent="." unique_id=2044007628 instance=ExtResource("4_3dryh")]
+position = Vector2(351, 123)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=957118032]
+navigation_polygon = SubResource("NavigationPolygon_wowpa")
+
+[node name="Waiter" parent="." unique_id=60788760 node_paths=PackedStringArray("player", "game", "restock_point") instance=ExtResource("5_wowpa")]
+position = Vector2(-163, -170)
+player = NodePath("../CharacterBody2D")
+game = NodePath("..")
+restock_point = NodePath("../Restock Point")
+
+[node name="table2" parent="." unique_id=1296518392 instance=ExtResource("4_3dryh")]
+position = Vector2(358, -111)
+
+[node name="Restock Point" type="Marker2D" parent="." unique_id=462273935]
+position = Vector2(-452, -10)
+gizmo_extents = 26.2
