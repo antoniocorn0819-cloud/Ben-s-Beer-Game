@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://njua7bjnp8n3" path="res://Scenes/numbers.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://cr4oxamyam4s7" path="res://Scenes/table.tscn" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://fbv21ctmvicu" path="res://Scenes/waiter.tscn" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://b5sf6t3vh1wb0" path="res://Scenes/coin.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://c3hkfyepyy8ns" path="res://Scenes/bar_segment.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://b8r30tqpq3jhf" path="res://Scenes/bartender.tscn" id="8_v158k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wowpa"]
 vertices = PackedVector2Array(-486.5, -253.17188, 488, -267.84375, 453.15625, -235.02344, -420.6172, -233, -434.54688, -231.28906, 488, 251.85938, 445.84375, 217.11719, -466.40625, 239.11719, -422.9297, 206.88281, -437.1875, -216.82031, -487.64063, -251.92969, -425.95313, -210.92188)
@@ -45,3 +48,17 @@ position = Vector2(358, -111)
 [node name="Restock Point" type="Marker2D" parent="." unique_id=462273935]
 position = Vector2(-452, -10)
 gizmo_extents = 26.2
+
+[node name="Coin" parent="." unique_id=497106264 instance=ExtResource("6_i6g32")]
+position = Vector2(-121, -14)
+
+[node name="Bartender" parent="." unique_id=708454312 node_paths=PackedStringArray("table_list", "game") instance=ExtResource("8_v158k")]
+position = Vector2(72, -130)
+table_list = [NodePath("../Bar Segment"), NodePath("../Bar Segment2")]
+game = NodePath("..")
+
+[node name="Bar Segment" parent="." unique_id=670871130 instance=ExtResource("7_1l0tm")]
+position = Vector2(171, -128)
+
+[node name="Bar Segment2" parent="." unique_id=141441647 instance=ExtResource("7_1l0tm")]
+position = Vector2(-34, -133)

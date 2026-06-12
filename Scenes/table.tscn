@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr4oxamyam4s7"]
 
-[ext_resource type="Script" uid="uid://br2r27yrp8j18" path="res://table.gd" id="1_4ppvu"]
+[ext_resource type="Script" uid="uid://bimw6twy0ugbq" path="res://Scripts/human table.gd" id="1_4ppvu"]
 [ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="1_ix8et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ppvu"]
@@ -11,8 +11,9 @@ size = Vector2(144, 142)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4ppvu"]
 
-[node name="table" type="StaticBody2D" unique_id=2044007628 node_paths=PackedStringArray("debug_beer_indicator", "marker")]
+[node name="table" type="StaticBody2D" unique_id=2044007628 node_paths=PackedStringArray("human_timer", "debug_beer_indicator", "marker")]
 script = ExtResource("1_4ppvu")
+human_timer = NodePath("Human Timer")
 debug_beer_indicator = NodePath("Debug Beer Indicator")
 marker = NodePath("Marker2D")
 
@@ -38,3 +39,9 @@ texture = SubResource("PlaceholderTexture2D_4ppvu")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=46414420]
 position = Vector2(103, 0)
 gizmo_extents = 19.1
+
+[node name="Human Timer" type="Timer" parent="." unique_id=627336687]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Human Timer" to="." method="_on_human_timer_timeout"]

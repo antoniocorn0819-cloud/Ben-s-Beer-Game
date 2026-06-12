@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c3hkfyepyy8ns"]
+
+[ext_resource type="Script" uid="uid://cg11i3cgg565q" path="res://Scripts/bar_table.gd" id="1_r446q"]
+[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="2_v4xhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grw2o"]
+size = Vector2(58, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ow65"]
+size = Vector2(74, 68)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_237sh"]
+
+[node name="Bar Segment" type="StaticBody2D" unique_id=670871130 node_paths=PackedStringArray("wait_timer", "debug_beer_indicator")]
+script = ExtResource("1_r446q")
+wait_timer = NodePath("Timer")
+debug_beer_indicator = NodePath("Debug Beer Indicator")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095317184]
+scale = Vector2(0.484375, 0.46875)
+texture = ExtResource("2_v4xhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1504951450]
+shape = SubResource("RectangleShape2D_grw2o")
+
+[node name="DrinkBox Reciever" type="Area2D" parent="." unique_id=1125703925]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrinkBox Reciever" unique_id=86481299]
+shape = SubResource("RectangleShape2D_8ow65")
+
+[node name="Debug Beer Indicator" type="Sprite2D" parent="." unique_id=443114620]
+scale = Vector2(26, 26.000002)
+texture = SubResource("PlaceholderTexture2D_237sh")
+
+[node name="Timer" type="Timer" parent="." unique_id=2132123220]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

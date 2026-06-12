@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c33vvt5y26uo3" path="res://Scripts/ui.gd" id="1_l0rh1"]
 
-[node name="Numbers" type="Control" unique_id=187204124 node_paths=PackedStringArray("beer_label")]
+[node name="Numbers" type="Control" unique_id=187204124 node_paths=PackedStringArray("beer_label", "coin_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,9 +11,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l0rh1")
 beer_label = NodePath("beer")
+coin_label = NodePath("coins")
 
 [node name="beer" type="Label" parent="." unique_id=1873063744]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "beers:"
+
+[node name="coins" type="Label" parent="." unique_id=225675218]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 48.0
+text = "coins: "

@@ -11,13 +11,18 @@ const speed: float = 500
 const push_speed: float = 700
 const acceleration: float = 5000
 
+var look_vector: Vector2
+
 signal drank
+signal coin
 
 func _physics_process(delta):
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
+	if direction.length() > 0:
+		look_vector = direction
 	var attempt_drink: bool = Input.is_action_just_pressed("drink")
 	var attempt_push: bool = Input.is_action_just_pressed("push")
-	pivot.position = direction * pivot_range
+	pivot.position = look_vector * pivot_range
 	
 	velocity = velocity.move_toward(direction * speed, acceleration*delta)
 	
@@ -26,7 +31,7 @@ func _physics_process(delta):
 	if attempt_drink:
 		drink_handler()
 	if attempt_push:
-		push_handler(direction)
+		push_handler(look_vector)
 
 func drink_handler():
 	
@@ -44,14 +49,34 @@ func drink_handler():
 	drank.emit()
 
 func push_handler(dir: Vector2):
-	print(pushbox.get_overlapping_areas().size())
 	if pushbox.get_overlapping_areas().size() <= 0:
-		print("push failed")
 		return
+	var thing = pushbox.get_overlapping_areas()[0].get_parent()
+	
+	if thing is not Waiter:
+		var bartender: Bartender = thing
+		bartender.attempt_beer()
+		return
+	
+	
 	var waiter: Waiter = pushbox.get_overlapping_areas()[0].get_parent()
-	print(waiter.velocity)
+	
 	waiter.velocity += dir * push_speed
-	print(waiter.velocity)
+	
+	waiter.coin_handler(dir)
+	
+
 
 func effect_failed_drink():
 	pass
+
+
+func _on_coin_collector_area_entered(area):
+	var thing = area.get_parent()
+	
+	if thing is not Coin:
+		return
+	
+	var c: Coin = thing
+	c.collect_coin()
+	coin.emit()

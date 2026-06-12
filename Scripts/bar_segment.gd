@@ -1,9 +1,8 @@
-class_name Table extends StaticBody2D
+class_name bar_seg extends StaticBody2D
 
 var has_beer: bool = true
 
 @export var debug_beer_indicator: Sprite2D
-@export var marker: Marker2D
 
 func player_drink_beer() -> bool:
 	if not has_beer:

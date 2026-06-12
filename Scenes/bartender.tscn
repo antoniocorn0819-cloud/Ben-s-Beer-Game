@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b8r30tqpq3jhf"]
+
+[ext_resource type="Script" uid="uid://kugfqsglj4dj" path="res://Scenes/bartender.gd" id="1_1383a"]
+[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="1_b64xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1383a"]
+size = Vector2(66, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqio3"]
+size = Vector2(64, 68)
+
+[node name="Bartender" type="StaticBody2D" unique_id=708454312]
+script = ExtResource("1_1383a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=550479632]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.51562494, 0.53124994)
+texture = ExtResource("1_b64xl")
+
+[node name="Coin Interactor" type="Area2D" parent="." unique_id=1874993956]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin Interactor" unique_id=601976590]
+shape = SubResource("RectangleShape2D_1383a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530984372]
+shape = SubResource("RectangleShape2D_kqio3")

@@ -58,6 +58,7 @@ push={
 2d_physics/layer_1="Physics Layer"
 2d_physics/layer_2="Drinking Layer"
 2d_physics/layer_3="Pushing Layer"
+2d_physics/layer_4="Coin Layer"
 
 [physics]
 

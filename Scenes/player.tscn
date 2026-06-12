@@ -14,6 +14,9 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(14, 14)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 31.016125
+
 [node name="Player" type="CharacterBody2D" unique_id=131372232 node_paths=PackedStringArray("pivot", "drinkbox", "pushbox")]
 collision_layer = 0
 script = ExtResource("1_cvnsp")
@@ -48,3 +51,13 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Pushbox Initiator" unique_id=580348821]
 shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="Coin Collector" type="Area2D" parent="." unique_id=1584708233]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin Collector" unique_id=485384681]
+shape = SubResource("CircleShape2D_cvnsp")
+debug_color = Color(0.9409874, 8.471012e-06, 0.6147793, 0.41960785)
+
+[connection signal="area_entered" from="Coin Collector" to="." method="_on_coin_collector_area_entered"]
