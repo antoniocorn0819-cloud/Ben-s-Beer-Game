@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://njua7bjnp8n3"]
 
 [ext_resource type="Script" uid="uid://c33vvt5y26uo3" path="res://Scripts/ui.gd" id="1_l0rh1"]
+[ext_resource type="Theme" uid="uid://b31b4klv6spsg" path="res://new_theme.tres" id="2_3lkkx"]
 
 [node name="Numbers" type="Control" unique_id=187204124 node_paths=PackedStringArray("beer_label", "coin_label")]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,14 +16,21 @@ beer_label = NodePath("beer")
 coin_label = NodePath("coins")
 
 [node name="beer" type="Label" parent="." unique_id=1873063744]
+z_index = 100
 layout_mode = 0
-offset_right = 40.0
+offset_left = 196.0
+offset_top = -20.0
+offset_right = 301.0
 offset_bottom = 23.0
-text = "beers:"
+theme = ExtResource("2_3lkkx")
+text = "BEERS:"
 
 [node name="coins" type="Label" parent="." unique_id=225675218]
+z_index = 100
 layout_mode = 0
-offset_top = 25.0
-offset_right = 40.0
-offset_bottom = 48.0
+offset_left = 196.0
+offset_top = 30.0
+offset_right = 309.0
+offset_bottom = 96.0
+theme = ExtResource("2_3lkkx")
 text = "coins: "

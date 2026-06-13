@@ -4,6 +4,6 @@ class_name Numbers extends Control
 @export var coin_label: Label
 
 func gui_update(data: GameData):
-	beer_label.text = "beers per minute: " + str(data.bpm)
-	coin_label.text = "coins: " + str(data.coins)
+	beer_label.text = "BEERS : " + str(data.total_beers)
+	coin_label.text = "COINS : " + str(data.coins)
 	

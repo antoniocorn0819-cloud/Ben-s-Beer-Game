@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cdqremw4mwwxq"]
+
+[ext_resource type="PackedScene" uid="uid://cr4oxamyam4s7" path="res://Scenes/Tables/table.tscn" id="1_i51gy"]
+
+[node name="table tl" unique_id=2044007628 instance=ExtResource("1_i51gy")]
+
+[node name="Marker2D" parent="." index="2" unique_id=46414420]
+position = Vector2(0, -60)

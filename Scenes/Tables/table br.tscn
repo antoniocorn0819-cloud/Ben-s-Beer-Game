@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjoe0b1gn4mc7"]
+
+[ext_resource type="PackedScene" uid="uid://cr4oxamyam4s7" path="res://Scenes/Tables/table.tscn" id="1_0en88"]
+
+[node name="table" unique_id=2044007628 instance=ExtResource("1_0en88")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1239475613]
+position = Vector2(24, -1)
+
+[node name="AnimatedSprite2D" parent="." index="4" unique_id=1554094189]
+position = Vector2(32, -32)
+flip_h = true

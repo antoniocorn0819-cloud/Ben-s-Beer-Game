@@ -2,7 +2,6 @@ class_name Table extends StaticBody2D
 
 var has_beer: bool = true
 
-@export var debug_beer_indicator: Sprite2D
 @export var marker: Marker2D
 
 signal replenished
@@ -23,10 +22,10 @@ func replenish_beer():
 
 
 func effect_player_drink():
-	debug_beer_indicator.visible = false
+	pass
 
 func effect_beer_replenished():
-	debug_beer_indicator.visible = true
+	pass
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("debug reset beers"):

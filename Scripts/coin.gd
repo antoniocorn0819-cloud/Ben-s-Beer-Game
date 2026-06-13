@@ -1,5 +1,5 @@
 class_name Coin extends CharacterBody2D
-const friction: float = 1000
+const friction: float = 3000
 
 func collect_coin():
 	queue_free()

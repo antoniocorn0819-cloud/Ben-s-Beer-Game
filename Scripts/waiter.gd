@@ -3,15 +3,17 @@ class_name Waiter extends CharacterBody2D
 @export var agent: NavigationAgent2D
 @export var player: Player
 @export var game: Main
+@export var tip_particles: GPUParticles2D
+
 
 @export var restock_point: Marker2D
 
 var coin_scene: PackedScene = load("res://Scenes/coin.tscn")
-const speed: float = 200
-const acceleration: float = 2000
-const range: float = 10
-const max_beers: int = 2
-const coin_chance: float = 1.0
+const speed: float = 400
+const acceleration: float = 2300
+const range: float = 20
+const max_beers: int = 4
+const coin_chance: float = 0.3
 const coin_throw_speed: = 600
 
 enum States {
@@ -42,7 +44,7 @@ func _physics_process(delta):
 	var direction = global_position.direction_to(agent.get_next_path_position())
 	velocity = velocity.move_toward(direction * speed, delta*acceleration)
 	move_and_slide()
-	
+	print(current_range)
 	
 	match current_state:
 		States.restocking:
@@ -84,6 +86,7 @@ func coin_handler(base_vel: Vector2):
 	while coins_held > 0:
 		var coin: Coin = coin_scene.instantiate()
 		coin.velocity = base_vel.rotated(randf_range(-PI/2, PI/2)) * coin_throw_speed * randf_range(0.7, 1)
+		coin.velocity += velocity
 		coin.global_position = global_position
 		game.add_child(coin)
 		coins_held -= 1
@@ -91,7 +94,8 @@ func coin_handler(base_vel: Vector2):
 
 
 func effect_tip_recieved():
-	pass
+	tip_particles.emitting = false
+	tip_particles.emitting = true
 
 func _on_pathfinding_timer_timeout():
 	pass

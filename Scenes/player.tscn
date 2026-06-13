@@ -3,16 +3,16 @@
 [ext_resource type="Script" uid="uid://14ht2p7cky07" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cf84gshqj1jrl" path="res://Assets/Sprites/Animated/BEN.png" id="2_cvnsp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
-radius = 27.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
+size = Vector2(54, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(16, 16)
+size = Vector2(44, 40)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
-size = Vector2(14, 14)
+size = Vector2(44, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 31.016125
@@ -60,15 +60,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=131372232 node_paths=PackedStringArray("pivot", "drinkbox", "pushbox")]
+[node name="Player" type="CharacterBody2D" unique_id=131372232 node_paths=PackedStringArray("pivot", "drinkbox", "pushbox", "sprite")]
 collision_layer = 0
 script = ExtResource("1_cvnsp")
 pivot = NodePath("Pivot")
 drinkbox = NodePath("Pivot/Drinkbox Initiator")
 pushbox = NodePath("Pivot/Pushbox Initiator")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1515172760]
-shape = SubResource("CircleShape2D_vgqql")
+shape = SubResource("RectangleShape2D_vgqql")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=337685425]
 
@@ -81,6 +82,7 @@ monitorable = false
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Debug Indicator" type="Sprite2D" parent="Pivot" unique_id=1280714313]
+z_index = 5
 scale = Vector2(4, 4)
 texture = SubResource("PlaceholderTexture2D_cvnsp")
 
@@ -100,7 +102,7 @@ shape = SubResource("CircleShape2D_cvnsp")
 debug_color = Color(0.9409874, 8.471012e-06, 0.6147793, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=668519316]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 

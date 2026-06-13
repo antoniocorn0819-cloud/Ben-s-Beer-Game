@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://b5sf6t3vh1wb0"]
 
-[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="1_2qo34"]
 [ext_resource type="Script" uid="uid://wg0caax34vqv" path="res://Scripts/coin.gd" id="1_jgi06"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jgi06"]
 radius = 7.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2qo34"]
+load_path = "res://.godot/imported/coin.png-69cfccbe0dae60c8dcaf1a48ccf22974.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g537i"]
 radius = 8.0
@@ -18,8 +20,8 @@ shape = SubResource("CircleShape2D_jgi06")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1977044416]
 modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.09374999, 0.09374999)
-texture = ExtResource("1_2qo34")
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_2qo34")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1423606437]
 collision_layer = 8

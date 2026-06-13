@@ -4,12 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cowsy0byal2g6" path="res://Assets/Sprites/Animated/Bar_Segment.png" id="2_r446q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grw2o"]
-size = Vector2(58, 56)
+size = Vector2(64, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ow65"]
-size = Vector2(74, 68)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_237sh"]
+size = Vector2(58, 68)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r446q"]
 atlas = ExtResource("2_r446q")
@@ -61,25 +59,75 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bar Segment" type="StaticBody2D" unique_id=670871130 node_paths=PackedStringArray("wait_timer", "debug_beer_indicator")]
+[sub_resource type="Animation" id="Animation_r446q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_v4xhv"]
+resource_name = "Replenish Beer"
+length = 0.13333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"logic_beer_replenished"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grw2o"]
+_data = {
+&"RESET": SubResource("Animation_r446q"),
+&"Replenish Beer": SubResource("Animation_v4xhv")
+}
+
+[node name="Bar Segment" type="StaticBody2D" unique_id=670871130 node_paths=PackedStringArray("wait_timer", "sprite", "animator")]
 script = ExtResource("1_r446q")
 wait_timer = NodePath("Timer")
-debug_beer_indicator = NodePath("Debug Beer Indicator")
+sprite = NodePath("AnimatedSprite2D")
+animator = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1504951450]
+position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_grw2o")
 
 [node name="DrinkBox Reciever" type="Area2D" parent="." unique_id=1125703925]
+position = Vector2(0, 37)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrinkBox Reciever" unique_id=86481299]
 shape = SubResource("RectangleShape2D_8ow65")
-
-[node name="Debug Beer Indicator" type="Sprite2D" parent="." unique_id=443114620]
-scale = Vector2(26, 26.000002)
-texture = SubResource("PlaceholderTexture2D_237sh")
 
 [node name="Timer" type="Timer" parent="." unique_id=2132123220]
 wait_time = 3.0
@@ -88,9 +136,10 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1012370362]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_acet5")
-frame = 3
-frame_progress = 0.011118222
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=296790322]
+libraries/ = SubResource("AnimationLibrary_grw2o")
+speed_scale = 0.1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,12 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://38yiyr8c0uba" path="res://Assets/Sprites/Animated/Table.png" id="2_4ppvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ppvu"]
-size = Vector2(122, 122)
+size = Vector2(110, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4jc3"]
-size = Vector2(144, 142)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4ppvu"]
+size = Vector2(80, 76)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4jc3"]
 atlas = ExtResource("2_4ppvu")
@@ -40,13 +38,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="table" type="StaticBody2D" unique_id=2044007628 node_paths=PackedStringArray("human_timer", "debug_beer_indicator", "marker")]
+[node name="table" type="StaticBody2D" unique_id=2044007628 node_paths=PackedStringArray("human_timer", "sprite", "marker")]
 script = ExtResource("1_4ppvu")
 human_timer = NodePath("Human Timer")
-debug_beer_indicator = NodePath("Debug Beer Indicator")
+sprite = NodePath("AnimatedSprite2D")
 marker = NodePath("Marker2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1239475613]
+position = Vector2(-24, -1)
 shape = SubResource("RectangleShape2D_4ppvu")
 
 [node name="DrinkBox Reciever" type="Area2D" parent="." unique_id=1090818858]
@@ -57,16 +56,12 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrinkBox Reciever" unique_id=628145508]
 shape = SubResource("RectangleShape2D_r4jc3")
 
-[node name="Debug Beer Indicator" type="Sprite2D" parent="." unique_id=459128070]
-scale = Vector2(26, 26.000002)
-texture = SubResource("PlaceholderTexture2D_4ppvu")
-
 [node name="Marker2D" type="Marker2D" parent="." unique_id=46414420]
-position = Vector2(103, 0)
+position = Vector2(0, 60)
 gizmo_extents = 19.1
 
 [node name="Human Timer" type="Timer" parent="." unique_id=627336687]
-wait_time = 5.0
+wait_time = 15.0
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1554094189]
