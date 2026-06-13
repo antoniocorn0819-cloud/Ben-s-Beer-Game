@@ -1,7 +1,29 @@
 [gd_scene format=3 uid="uid://fbv21ctmvicu"]
 
 [ext_resource type="Script" uid="uid://bvwwlb0r83mo5" path="res://Scripts/waiter.gd" id="1_yolb7"]
-[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="2_4lx1f"]
+[ext_resource type="Texture2D" uid="uid://cytmnlwflo3bx" path="res://Assets/Sprites/Animated/Butler.png" id="2_yolb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lx1f"]
+atlas = ExtResource("2_yolb7")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bufwb"]
+atlas = ExtResource("2_yolb7")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k76bp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lx1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bufwb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bufwb"]
 radius = 21.023796
@@ -14,10 +36,12 @@ collision_layer = 0
 script = ExtResource("1_yolb7")
 agent = NodePath("NavigationAgent2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1194291061]
-modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.34375, 0.453125)
-texture = ExtResource("2_4lx1f")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1869898311]
+position = Vector2(0, -32)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_k76bp")
+autoplay = "default"
+frame_progress = 0.23552355
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=165608797]
 shape = SubResource("CircleShape2D_bufwb")

@@ -77,19 +77,18 @@ offset_right = -551.0
 offset_bottom = -300.0
 
 [node name="table" parent="." unique_id=2044007628 instance=ExtResource("4_3dryh")]
-position = Vector2(351, 123)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=957118032]
 navigation_polygon = SubResource("NavigationPolygon_wowpa")
 
 [node name="Waiter" parent="." unique_id=60788760 node_paths=PackedStringArray("player", "game", "restock_point") instance=ExtResource("5_wowpa")]
-position = Vector2(-163, -170)
+position = Vector2(-444, -43)
 player = NodePath("../CharacterBody2D")
 game = NodePath("..")
 restock_point = NodePath("../Restock Point")
 
 [node name="table2" parent="." unique_id=1296518392 instance=ExtResource("4_3dryh")]
-position = Vector2(358, -111)
+position = Vector2(0, 64)
 
 [node name="Restock Point" type="Marker2D" parent="." unique_id=462273935]
 position = Vector2(-452, -10)
@@ -99,7 +98,7 @@ gizmo_extents = 26.2
 position = Vector2(-121, -14)
 
 [node name="Bartender" parent="." unique_id=708454312 node_paths=PackedStringArray("table_list", "game") instance=ExtResource("8_v158k")]
-position = Vector2(72, -130)
+position = Vector2(0, -192)
 table_list = [NodePath("../Bar Segment"), NodePath("../Bar Segment2")]
 game = NodePath("..")
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8r30tqpq3jhf"]
 
 [ext_resource type="Script" uid="uid://kugfqsglj4dj" path="res://Scenes/bartender.gd" id="1_1383a"]
-[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="1_b64xl"]
+[ext_resource type="Texture2D" uid="uid://pq2oy8vsics5" path="res://Assets/Sprites/Animated/BarTender.png" id="2_1383a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1383a"]
 size = Vector2(66, 68)
@@ -9,13 +9,35 @@ size = Vector2(66, 68)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqio3"]
 size = Vector2(64, 68)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqio3"]
+atlas = ExtResource("2_1383a")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kdgn"]
+atlas = ExtResource("2_1383a")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5026q"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqio3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kdgn")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
 [node name="Bartender" type="StaticBody2D" unique_id=708454312]
 script = ExtResource("1_1383a")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=550479632]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.51562494, 0.53124994)
-texture = ExtResource("1_b64xl")
 
 [node name="Coin Interactor" type="Area2D" parent="." unique_id=1874993956]
 collision_layer = 4
@@ -26,3 +48,9 @@ shape = SubResource("RectangleShape2D_1383a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530984372]
 shape = SubResource("RectangleShape2D_kqio3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=436208126]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5026q")
+animation = &"new_animation"
+frame_progress = 0.48841143

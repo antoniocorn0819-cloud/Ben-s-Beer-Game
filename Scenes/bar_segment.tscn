@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3hkfyepyy8ns"]
 
 [ext_resource type="Script" uid="uid://cg11i3cgg565q" path="res://Scripts/bar_table.gd" id="1_r446q"]
-[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="2_v4xhv"]
+[ext_resource type="Texture2D" uid="uid://cowsy0byal2g6" path="res://Assets/Sprites/Animated/Bar_Segment.png" id="2_r446q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grw2o"]
 size = Vector2(58, 56)
@@ -11,14 +11,60 @@ size = Vector2(74, 68)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_237sh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r446q"]
+atlas = ExtResource("2_r446q")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4xhv"]
+atlas = ExtResource("2_r446q")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grw2o"]
+atlas = ExtResource("2_r446q")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ow65"]
+atlas = ExtResource("2_r446q")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_237sh"]
+atlas = ExtResource("2_r446q")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bklk2"]
+atlas = ExtResource("2_r446q")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_acet5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r446q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4xhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grw2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ow65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_237sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bklk2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Bar Segment" type="StaticBody2D" unique_id=670871130 node_paths=PackedStringArray("wait_timer", "debug_beer_indicator")]
 script = ExtResource("1_r446q")
 wait_timer = NodePath("Timer")
 debug_beer_indicator = NodePath("Debug Beer Indicator")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095317184]
-scale = Vector2(0.484375, 0.46875)
-texture = ExtResource("2_v4xhv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1504951450]
 shape = SubResource("RectangleShape2D_grw2o")
@@ -38,5 +84,13 @@ texture = SubResource("PlaceholderTexture2D_237sh")
 [node name="Timer" type="Timer" parent="." unique_id=2132123220]
 wait_time = 3.0
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1012370362]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_acet5")
+frame = 3
+frame_progress = 0.011118222
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=296790322]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

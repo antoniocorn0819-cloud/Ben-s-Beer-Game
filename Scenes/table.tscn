@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr4oxamyam4s7"]
 
 [ext_resource type="Script" uid="uid://bimw6twy0ugbq" path="res://Scripts/human table.gd" id="1_4ppvu"]
-[ext_resource type="Texture2D" uid="uid://dg1heidb4t1an" path="res://icon.svg" id="1_ix8et"]
+[ext_resource type="Texture2D" uid="uid://38yiyr8c0uba" path="res://Assets/Sprites/Animated/Table.png" id="2_4ppvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ppvu"]
 size = Vector2(122, 122)
@@ -11,15 +11,40 @@ size = Vector2(144, 142)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4ppvu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4jc3"]
+atlas = ExtResource("2_4ppvu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xndo"]
+atlas = ExtResource("2_4ppvu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqsq7"]
+atlas = ExtResource("2_4ppvu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cpa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4jc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xndo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqsq7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="table" type="StaticBody2D" unique_id=2044007628 node_paths=PackedStringArray("human_timer", "debug_beer_indicator", "marker")]
 script = ExtResource("1_4ppvu")
 human_timer = NodePath("Human Timer")
 debug_beer_indicator = NodePath("Debug Beer Indicator")
 marker = NodePath("Marker2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=996814989]
-modulate = Color(0, 1, 1, 1)
-texture = ExtResource("1_ix8et")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1239475613]
 shape = SubResource("RectangleShape2D_4ppvu")
@@ -43,5 +68,11 @@ gizmo_extents = 19.1
 [node name="Human Timer" type="Timer" parent="." unique_id=627336687]
 wait_time = 5.0
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1554094189]
+position = Vector2(-32, -32)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5cpa6")
+frame_progress = 0.6182843
 
 [connection signal="timeout" from="Human Timer" to="." method="_on_human_timer_timeout"]
